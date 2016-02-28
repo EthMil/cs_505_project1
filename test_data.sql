@@ -8,5 +8,8 @@ INSERT INTO roles(rname, rdesignation) VALUES('Human Resources/Engineering', 'HE
 INSERT INTO roles(rname, rdesignation) VALUES('Human Resources/Finances', 'HF');
 INSERT INTO roles(rname, rdesignation) VALUES('Finances/Engineering', 'FE');
 
-INSERT INTO employees(username, fname, lname, rdesignation, password, salary) VALUES('efmi222', 'ethan', 'miller', 'E', 'em.7741235', 30.000);
-INSERT INTO employees(username, fname, lname, rdesignation, password, salary) VALUES('Zac', 'Zachary', 'Miller', 'H', 'isuck', 30.000);
+INSERT INTO employees(username, fname, lname, rid) VALUES('efmi222', 'ethan', 'miller', 1);
+INSERT INTO employees(username, fname, lname, rid) VALUES('Zac', 'Zachary', 'Miller', 6);
+
+
+INSERT INTO projects(project_title, project_lead) VALUES('hoverboard', (select eid from employees where fname = 'ethan' and lname = 'miller'));
