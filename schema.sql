@@ -11,4 +11,5 @@ CREATE TABLE employees(
     password varchar(25) NOT NULL,
     salary  numeric(15,2) NOT NULL,
     PRIMARY KEY(username),
-    FOREIGN KEY(rdesignation) REFERENCES roles(rdesignation));
+    FOREIGN KEY(rdesignation) REFERENCES roles(rdesignation),
+    FOREIGN KEY(username) REFERENCES mysql.user(user));
