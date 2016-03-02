@@ -1,3 +1,5 @@
+-- DROP VIEW IF EXISTS 
+DROP TABLE IF EXISTS log;
 DROP TABLE IF EXISTS schedule;
 DROP TABLE IF EXISTS pay_info;
 DROP TABLE IF EXISTS projects;
@@ -5,18 +7,18 @@ DROP TABLE IF EXISTS employees;
 DROP TABLE IF EXISTS roles;
 
 CREATE TABLE roles(
-    rid bigint(20) not null auto_increment primary key,
     rname varchar(30) NOT NULL,
-    rdesignation varchar(2) NOT NULL);
+    security_level varchar(2) NOT NULL PRIMARY KEY);
     
 CREATE TABLE employees(
     eid bigint(20) not null auto_increment,
-    username varchar(30) NOT NULL,
+    username varchar(30) DEFAULT NULL,
     fname varchar(30) NOT NULL,
     lname varchar(30) NOT NULL,
-    rid bigint(20) NOT NULL,
+    security_level varchar(2) NOT NULL,
     primary key(eid),
-    foreign key(rid) references roles(rid));
+    foreign key(security_level) references roles(security_level)
+    );
     
 
 CREATE TABLE projects(
@@ -42,3 +44,10 @@ CREATE TABLE schedule(
     end_time datetime,
     primary key(eid),
     foreign key(eid) references employees(eid));
+    
+CREATE TABLE log(
+    username varchar(30) NOT NULL,
+    query varchar(600) NOT NULL,
+    query_timestamp timestamp DEFAULT CURRENT_TIMESTAMP);
+    
+-- CREATE VI3
