@@ -1,15 +1,18 @@
+create user jesse;
 GRANT E to jesse;
-grant G to jesse;
-set default role G for jesse;
+
+create user candace;
 grant L to candace;
-grant G to candace;
-set default role G for candace;
+set default role L for candace;
+
+create user devin;
 grant F to devin;
-grant G to candace;
-set default role G for candace;
+set default role F for devin;
+
+create user zac;
 grant H to zac;
-grant G to zac;
-set default role G for zac;
-grant S to ethmil;
-grant G to ethmil;
-set default role G for ethmil;
+set default role H for zac;
+
+create user ethmil;
+grant S to ethmil with admin option;
+set default role S for ethmil;
