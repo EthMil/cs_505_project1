@@ -1,16 +1,16 @@
-INSERT INTO roles(rname, security_level) VALUES('Engineering', 'E');
-INSERT INTO roles(rname, security_level) VALUES('General','G');
-INSERT INTO roles(rname, security_level) VALUES('Leadership', 'L');
-INSERT INTO roles(rname, security_level) VALUES('Finances', 'F');
-INSERT INTO roles(rname, security_level) VALUES('Security Officer', 'S');
-INSERT INTO roles(rname, security_level) VALUES('Human Resources', 'H');
-INSERT INTO roles(rname, security_level) VALUES('Human Resources/Engineering', 'HE');
-INSERT INTO roles(rname, security_level) VALUES('Human Resources/Finances', 'HF');
-INSERT INTO roles(rname, security_level) VALUES('Finances/Engineering', 'FE');
+-- INSERT INTO roles(rname, security_level) VALUES('Engineering', 'E');
+-- INSERT INTO roles(rname, security_level) VALUES('General','G');
+-- INSERT INTO roles(rname, security_level) VALUES('Leadership', 'L');
+-- INSERT INTO roles(rname, security_level) VALUES('Finances', 'F');
+-- INSERT INTO roles(rname, security_level) VALUES('Security Officer', 'S');
+-- INSERT INTO roles(rname, security_level) VALUES('Human Resources', 'H');
+-- INSERT INTO roles(rname, security_level) VALUES('Human Resources/Engineering', 'HE');
+-- INSERT INTO roles(rname, security_level) VALUES('Human Resources/Finances', 'HF');
+-- INSERT INTO roles(rname, security_level) VALUES('Finances/Engineering', 'FE');
 
-INSERT INTO employees(username, fname, lname, security_level) VALUES('efmi222', 'ethan', 'miller', 'S');
-INSERT INTO employees(username, fname, lname, security_level) VALUES('zac', 'Zachary', 'Miller', 'H');
-INSERT INTO employees(username, fname, lname, security_level) VALUES('candy', 'candace', 'moberly', 'F');
+INSERT INTO employees(username, fname, lname) VALUES('efmi222', 'ethan', 'miller');
+INSERT INTO employees(username, fname, lname) VALUES('zac', 'Zachary', 'Miller');
+INSERT INTO employees(username, fname, lname) VALUES('candy', 'candace', 'moberly');
 
 
 INSERT INTO projects(project_title, project_lead) VALUES('hoverboard', (select eid from employees where fname = 'ethan' and lname = 'miller'));

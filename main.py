@@ -19,51 +19,32 @@ rows = cursor.fetchall()
 for row in rows:
     for col in row:
         print "%s," %col
-    # print "\n"
-user_input = "select security_level from employees where username = '" + username + "'and security_level = 'S'"
-try:
-    cursor.execute(user_input)
-    security_level = cursor.fetchone()
-    
-    print("type quit to exit program or help for available commands")
-    user_input = raw_input("type your command: ")
-    while(user_input != "quit"):
-        if(user_input == ("create" or "update")):
-            username = raw_input("input the username")
-            security_level = raw_input("input the new security level for the user.")
-            if(user_input == "create"):
-                new_user_password = raw_input("input the new password")
-                cursor.execute("CREATE USER '"+username+"'@'%' IDENTIFIED BY '"+new_user_password+"'")
-                cursor.execute("INSERT INTO employees(username, role) VALUES("+username+","+security_level+")")
-            elif(user_input == "update"):            
-                cursor.execute("revoke all privileges on *.* from '"+username+"'@'%'")
-            # if(security_level = "H"):
-            #     cursor.execute("GRANT SELECT, INSERT on efmi222.human")
-except:
-    while (user_input != "quit"):
+while (user_input != "quit"):
         
-        user_input = raw_input("type in an instruction: ")
-        if(user_input != ("quit" or "help" or "available")):
+    user_input = raw_input("type in an instruction: ")
+    if(user_input != ("quit" or "help" or "available")):
+        try:
+            cursor.execute(user_input)
+            rows = cursor.fetchall()
+        except MySQLdb.Error, e:
+            print("You aren't allowed to make this query, the Security Log has been updated.")
             try:
-                cursor.execute(user_input)
-                rows = cursor.fetchall()
-            except MySQLdb.Error, e:
-                try:
-                    print "MySQL Error [%d]: %s" % (e.args[0], e.args[1])
-                except IndexError:
-                    print "MySQL Error: %s" % str(e)
-            
-            for row in rows:
-                for col in row:
-                    print "%s," %col
-                print "\n"
-                
-        elif(user_input == "available"):
-            cursor.execute("show tables")
-            
-        elif(user_input == "help"):
-            print("Type insert if you wish to insert a table")
-            print("")
-            
-# disconnect from server                                                                                                                             
+                print "MySQL Error [%d]: %s" % (e.args[0], e.args[1])
+            except IndexError:
+                print "MySQL Error: %s" % str(e)
+            cursor.execute("insert into log(username, query) VALUES('"+username+"', '"+user_input+"')")
+    
+        for row in rows:
+            for col in row:
+                print "%s," %col
+                #print "\n"
+                        
+    elif(user_input == "available"):
+        cursor.execute("show tables")
+        
+    elif(user_input == "help"):
+        print("Type insert if you wish to insert a table")
+        print("")
+        
+        # disconnect from server                                                                                                                             
 db.close()
