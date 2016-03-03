@@ -1,0 +1,15 @@
+GRANT E to jesse;
+grant G to jesse;
+set default role G for jesse;
+grant L to candace;
+grant G to candace;
+set default role G for candace;
+grant F to devin;
+grant G to candace;
+set default role G for candace;
+grant H to zac;
+grant G to zac;
+set default role G for zac;
+grant S to ethmil;
+grant G to ethmil;
+set default role G for ethmil;
